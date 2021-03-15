@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% block title %}Strona glowna{% endblock %}
+{% block content %}
+
+<h3> Witaj {{user.email}} </h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+
+      <th scope="col">Review</th>
+      <th scope="col">Date</th>
+        <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for op in user.reviews %}
+
+  <tr>
+      <th scope="row">{{op.id}}</th>
+      <td>{{op.text}}</td>
+      <td>{{op.date}}</td>
+     <td>{% if op.status == "zaakceptowane" %}<p class="text-success">zaakceptowane</p>
+     {% elif op.status == "odrzucone" %}<p class="text-danger">odrzucone</p>
+     {% else %}
+         <p class="text-muted">{{op.status}}</p>
+     {% endif %}
+     </td>
+
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %} {% block title %}Review{% endblock %}
+{% block content %}
+
+<form method = "POST">
+
+    <textarea class="form-control" id="review_note" name="review_note" rows="3"></textarea>
+
+    <button type="submit" class="btn btn-info">Dodaj opinię</button>
+
+</form>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% block title %}Przeglad opinni{% endblock %}
+{% block content %}
+
+<h3> Zobacz co napisali </h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">User</th>
+      <th scope="col">Review</th>
+      <th scope="col">Date</th>
+        <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for op in opinie %}
+
+  <tr>
+      <th scope="row">{{op.id}}</th>
+      <td>{{maile[op.id_user]}}</td>
+      <td>{{op.text}}</td>
+      <td>{{op.date}}</td>
+        <td>
+        {% if op.status == "w toku" or op.status == None %}
+            <button type="button" class="btn btn-success" onclick="window.location.href='/set_status?review_id={{ op.id }}&action=zaakceptuj'">Zakceptuj</button>
+            <button type="button" class="btn btn-danger" onclick="window.location.href='/set_status?review_id={{ op.id }}&action=odrzuc'">Odrzuć</button>
+
+            {% else %}
+            {{op.status}}
+            {% endif %}
+
+        </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
